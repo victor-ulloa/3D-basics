@@ -356,6 +356,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Y Bot
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 950ac62b047ef9444a6d3290fbc855ba, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e8bbc835173b0d04f97224db9f445fb3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 950ac62b047ef9444a6d3290fbc855ba, type: 3}
 --- !u!4 &1907394812 stripped
