@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour {
     public void Fire(InputAction.CallbackContext context) {
         if (context.action.WasPressedThisFrame()) {
             if (projectilePrefab && projectileSpawn) {
+                Debug.Log("t");
                 Rigidbody temp = Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation);
                 temp.AddForce(projectileSpawn.forward * projectileForce, ForceMode.Impulse);
 
