@@ -48,8 +48,8 @@ public class PlayerController : MonoBehaviour {
         curMoveInput.y -= gravity * Time.deltaTime;
         controller.Move(curMoveInput * Time.deltaTime);
 
-        //anim.SetFloat("Forward", move.y);
-        //anim.SetFloat("Right", move.x);
+        anim.SetFloat("Forward", move.y);
+        anim.SetFloat("Right", move.x);
     }
 
     public void MovePlayer(InputAction.CallbackContext context) {
