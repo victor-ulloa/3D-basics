@@ -23,12 +23,13 @@ public class CheckForPlayer : MonoBehaviour {
             Vector3 vector3 = playerTransform.position;
             vector3.z = 0;
             vector3.x = 0;
-            transform.LookAt(vector3);
+            transform.LookAt(playerTransform.position);
         }
+
+        var ray = new Ray(originPoint.position, this.transform.forward);
             
         RaycastHit hit;
-        if (Physics.Raycast(originPoint.position, Vector3.forward, out hit, sightDistance)) {
-            Debug.Log(hit.transform.position.y);
+        if (Physics.Raycast(ray, out hit, sightDistance)) {
             if (hit.transform.gameObject.tag == "Player") {
                 playerTransform = hit.transform;
             }

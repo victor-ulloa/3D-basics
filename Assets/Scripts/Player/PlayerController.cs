@@ -39,10 +39,6 @@ public class PlayerController : MonoBehaviour {
             }
         } catch (ArgumentNullException e) {
             Debug.Log(e.Message);
-        } catch (UnassignedReferenceException e) {
-            Debug.Log(e.Message);
-        } finally {
-            Debug.Log("This Code Always Runs");
         }
 
     }
