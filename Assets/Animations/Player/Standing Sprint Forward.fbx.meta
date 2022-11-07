@@ -5,7 +5,7 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: RunForward
+    second: SprintForward
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -20,11 +20,7 @@ ModelImporter:
     removeConstantScaleCurves: 1
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
-      copied configuration does not match position in animation file:\n\t'mixamorig:LeftUpLeg'
-      : position error = 16.661083 mm\n\t'mixamorig:LeftLeg' : position error = 36.438290
-      mm\n\t'mixamorig:LeftFoot' : position error = 23.462679 mm\n\t'mixamorig:LeftToeBase'
-      : position error = 18.399586 mm\n"
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -40,7 +36,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: RunForward
+      name: SprintForward
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
