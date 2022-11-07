@@ -17,7 +17,6 @@ public class MouseLook : MonoBehaviour {
     public float maximumY = 60.0f;
 
     float rotationY = 0.0f;
-
     // Start is called before the first frame update
     void Start() {
         if (GetComponent<Rigidbody>()) {

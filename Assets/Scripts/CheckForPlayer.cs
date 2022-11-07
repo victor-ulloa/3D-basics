@@ -5,10 +5,17 @@ using UnityEngine;
 public class CheckForPlayer : MonoBehaviour {
     public Transform playerTransform;
 
-    public float sightDistance = 100f;
-    public Transform originPoint;
+    [SerializeField] float sightDistance = 100f;
+    [SerializeField] Transform originPoint;
 
-    public float rotationSpeed;
+    [SerializeField] float rotationSpeed;
+
+    public bool isLookingAtPlayer {
+        get {
+            return !!playerTransform;
+        }
+    }
+
     // Start is called before the first frame update
     void Start() {
 
@@ -20,9 +27,6 @@ public class CheckForPlayer : MonoBehaviour {
             transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
         }
         else {
-            Vector3 vector3 = playerTransform.position;
-            vector3.z = 0;
-            vector3.x = 0;
             transform.LookAt(playerTransform.position);
         }
 
