@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
     Animator anim;
+
+    [SerializeField] int health = 5;
+
     // Start is called before the first frame update
     void Start() {
         anim = GetComponentInChildren<Animator>();
@@ -17,5 +20,15 @@ public class EnemyController : MonoBehaviour {
     void Update() {
         //anim.SetFloat("Forward", move.y);
         //anim.SetFloat("Right", move.x);
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.tag == "Projectile") {
+            health--;
+            if (health <= 0) {
+                Destroy(gameObject);
+            }
+            return;
+        }
     }
 }
