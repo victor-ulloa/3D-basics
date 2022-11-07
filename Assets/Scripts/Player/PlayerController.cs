@@ -52,8 +52,8 @@ public class PlayerController : MonoBehaviour {
         curMoveInput.y -= gravity * Time.deltaTime;
         controller.Move(curMoveInput * Time.deltaTime);
 
-        anim.SetFloat("Forward", move.y);
-        anim.SetFloat("Right", move.x);
+        //anim.SetFloat("Forward", move.y);
+        //anim.SetFloat("Right", move.x);
     }
 
     public void MovePlayer(InputAction.CallbackContext context) {
@@ -63,7 +63,6 @@ public class PlayerController : MonoBehaviour {
 
         Vector3 moveVel = new Vector3(move.x, 0, move.y);
         curMoveInput = moveVel * moveSpeed;
-
         if (controller.isGrounded) {
             curMoveInput = transform.TransformDirection(curMoveInput);
         }

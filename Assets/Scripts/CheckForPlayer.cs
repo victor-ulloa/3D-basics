@@ -16,15 +16,22 @@ public class CheckForPlayer : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (!playerTransform)
+        if (!playerTransform) {
             transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
-        else
-            transform.LookAt(playerTransform.position);
-
+        }
+        else {
+            Vector3 vector3 = playerTransform.position;
+            vector3.z = 0;
+            vector3.x = 0;
+            transform.LookAt(vector3);
+        }
+            
         RaycastHit hit;
         if (Physics.Raycast(originPoint.position, Vector3.forward, out hit, sightDistance)) {
-            if (hit.transform.gameObject.tag == "Player")
+            Debug.Log(hit.transform.position.y);
+            if (hit.transform.gameObject.tag == "Player") {
                 playerTransform = hit.transform;
+            }
         } else {
             playerTransform = null;
         }
