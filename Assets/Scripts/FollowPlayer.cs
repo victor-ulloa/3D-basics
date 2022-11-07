@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 [RequireComponent(typeof(CheckForPlayer))]
 
@@ -32,7 +33,10 @@ public class FollowPlayer : MonoBehaviour {
     void Update() {
         if (sight.isLookingAtPlayer) {
             playerPosition = sight.playerTransform.position;
-            if (playerPosition.x - transform.position.x > 1 || playerPosition.z - transform.position.z > 1 ) {
+
+            float angle = Vector3.Angle(sight.playerTransform.forward, transform.position - sight.playerTransform.position);
+
+            if (angle > 50 && (Mathf.Abs(playerPosition.x - transform.position.x) > 3 || Mathf.Abs(playerPosition.z - transform.position.z) > 3)) {
                 transform.position = Vector3.MoveTowards(transform.position, playerPosition, moveSpeed * Time.deltaTime);
             }
         } else {
