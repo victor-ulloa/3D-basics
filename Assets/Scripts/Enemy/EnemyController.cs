@@ -6,9 +6,11 @@ public class EnemyController : MonoBehaviour {
     Animator anim;
 
     [SerializeField] int health = 5;
+    Rigidbody rb;
 
     // Start is called before the first frame update
     void Start() {
+        rb = GetComponentInChildren<Rigidbody>();
         anim = GetComponentInChildren<Animator>();
 
         if (!anim) {
@@ -18,8 +20,10 @@ public class EnemyController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        //anim.SetFloat("Forward", move.y);
-        //anim.SetFloat("Right", move.x);
+        var localVelocity = transform.InverseTransformDirection(rb.velocity);
+        localVelocity.Normalize();
+        anim.SetFloat("Forward", localVelocity.y);
+        anim.SetFloat("Right", localVelocity.x);
     }
 
     private void OnCollisionEnter(Collision collision) {

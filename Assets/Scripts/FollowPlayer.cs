@@ -32,7 +32,9 @@ public class FollowPlayer : MonoBehaviour {
     void Update() {
         if (sight.isLookingAtPlayer) {
             playerPosition = sight.playerTransform.position;
-            transform.position = Vector3.MoveTowards(transform.position, playerPosition, moveSpeed * Time.deltaTime);
+            if (playerPosition.x - transform.position.x > 1 || playerPosition.z - transform.position.z > 1 ) {
+                transform.position = Vector3.MoveTowards(transform.position, playerPosition, moveSpeed * Time.deltaTime);
+            }
         } else {
             playerPosition.x = 0;
             playerPosition.z = 0;
