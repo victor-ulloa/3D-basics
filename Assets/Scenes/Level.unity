@@ -1017,7 +1017,7 @@ MonoBehaviour:
   projectileSpawn: {fileID: 191602672}
   projectilePrefab: {fileID: 9174582038289227973, guid: c8024185c233a9d4e92f498564a41654, type: 3}
   projectileForce: 10
-  moveSpeed: 10
+  moveSpeed: 5
   gravity: 9.81
   jumpSpeed: 10
 --- !u!33 &59154090567139787
