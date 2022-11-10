@@ -695,7 +695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f10e43355cef1640a2ed439b3ad97b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 0
 --- !u!114 &1315692059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -771,7 +771,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 950ac62b047ef9444a6d3290fbc855ba, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5465940246521907071, guid: 950ac62b047ef9444a6d3290fbc855ba, type: 3}
       propertyPath: m_LocalPosition.x
