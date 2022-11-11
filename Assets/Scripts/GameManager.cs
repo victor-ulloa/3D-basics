@@ -70,4 +70,8 @@ public class GameManager : Singelton<GameManager> {
     public void EndGame() {
         SceneManager.LoadScene("Victory");
     }
+
+    public void GameOver() {
+        SceneManager.LoadScene("GameOver");
+    }
 }

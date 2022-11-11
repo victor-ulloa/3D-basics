@@ -7,19 +7,41 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour {
     Animator anim;
 
-    public Camera playerCamera;
-    public Transform projectileSpawn;
-    public Rigidbody projectilePrefab;
-    public float projectileForce = 10.0f;
+    [SerializeField] Camera playerCamera;
+    [SerializeField] Transform projectileSpawn;
+    [SerializeField] Rigidbody projectilePrefab;
+    [SerializeField] float projectileForce = 10.0f;
 
-    public float moveSpeed = 0;
-    public float gravity = 9.81f;
-    public float jumpSpeed = 10.0f;
+    [SerializeField] float moveSpeed = 0;
+    [SerializeField] float gravity = 9.81f;
+    [SerializeField] float jumpSpeed = 10.0f;
+
+    [SerializeField] HealthBar healthBar;
+    [SerializeField] int maxHealth = 100;
 
     CharacterController controller;
 
     Vector3 curMoveInput;
     Vector2 move;
+
+    private int _health = 100;
+    public int lives {
+        get { return _health; }
+        set {
+            if (value <= 0) {
+                GameManager.Instance.GameOver();
+            }
+
+            healthBar.SetHealth(value);
+            _health = value;
+            if (_health > maxHealth) {
+                _health = maxHealth;
+            }
+            //OnLifeValueChaged.Invoke(_health);
+            Debug.Log("Lives are set to:" + lives.ToString());
+        }
+    }
+
 
     // Start is called before the first frame update
     void Start() {
