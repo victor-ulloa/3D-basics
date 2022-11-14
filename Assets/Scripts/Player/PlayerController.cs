@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour {
-    Animator anim;
+    Animator animator;
 
     [SerializeField] Camera playerCamera;
     [SerializeField] Transform projectileSpawn;
@@ -32,13 +32,14 @@ public class PlayerController : MonoBehaviour {
                 GameManager.Instance.GameOver();
             }
 
-            healthBar.SetHealth(value);
+            
             _health = value;
             if (_health > maxHealth) {
                 _health = maxHealth;
             }
-            //OnLifeValueChaged.Invoke(_health);
-            Debug.Log("Lives are set to:" + lives.ToString());
+
+            healthBar.SetHealth(_health);
+            Debug.Log("Health is to:" + lives.ToString());
         }
     }
 
@@ -49,9 +50,9 @@ public class PlayerController : MonoBehaviour {
             controller = GetComponent<CharacterController>();
             controller.minMoveDistance = 0.0f;
 
-            anim = GetComponentInChildren<Animator>();
+            animator = GetComponentInChildren<Animator>();
 
-            if (!anim) {
+            if (!animator) {
                 Debug.Log("No animation component in child for the gameobject " + gameObject.name);
             }
 
@@ -70,8 +71,8 @@ public class PlayerController : MonoBehaviour {
         curMoveInput.y -= gravity * Time.deltaTime;
         controller.Move(curMoveInput * Time.deltaTime);
 
-        anim.SetFloat("Forward", move.y);
-        anim.SetFloat("Right", move.x);
+        animator.SetFloat("Forward", move.y);
+        animator.SetFloat("Right", move.x);
     }
 
     public void MovePlayer(InputAction.CallbackContext context) {
@@ -86,8 +87,6 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-
-
     public void Fire(InputAction.CallbackContext context) {
         if (context.action.WasPressedThisFrame()) {
             if (projectilePrefab && projectileSpawn) {
@@ -96,6 +95,13 @@ public class PlayerController : MonoBehaviour {
 
                 Destroy(temp.gameObject, 2.0f);
             }
+        }
+    }
+
+    public void Punch(InputAction.CallbackContext context) {
+        //Debug.Log("Move vector is: " + context.action.ReadValue<Vector2>());
+        if (context.action.WasPressedThisFrame()) {
+            animator.SetTrigger("Punch");
         }
     }
 }

@@ -71,6 +71,15 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Punch"",
+                    ""type"": ""Button"",
+                    ""id"": ""0b2f0d51-a642-4c25-ac06-e685529e1e0d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -216,6 +225,17 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""action"": ""Escape"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""17d9d1a6-31f7-4926-9c98-4680ad0fabc2"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Punch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -229,6 +249,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         m_Actions_Fire = m_Actions.FindAction("Fire", throwIfNotFound: true);
         m_Actions_Look = m_Actions.FindAction("Look", throwIfNotFound: true);
         m_Actions_Escape = m_Actions.FindAction("Escape", throwIfNotFound: true);
+        m_Actions_Punch = m_Actions.FindAction("Punch", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -293,6 +314,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
     private readonly InputAction m_Actions_Fire;
     private readonly InputAction m_Actions_Look;
     private readonly InputAction m_Actions_Escape;
+    private readonly InputAction m_Actions_Punch;
     public struct ActionsActions
     {
         private @Player m_Wrapper;
@@ -302,6 +324,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Actions_Fire;
         public InputAction @Look => m_Wrapper.m_Actions_Look;
         public InputAction @Escape => m_Wrapper.m_Actions_Escape;
+        public InputAction @Punch => m_Wrapper.m_Actions_Punch;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -326,6 +349,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Escape.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnEscape;
                 @Escape.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnEscape;
                 @Escape.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnEscape;
+                @Punch.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPunch;
+                @Punch.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPunch;
+                @Punch.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPunch;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -345,6 +371,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Escape.started += instance.OnEscape;
                 @Escape.performed += instance.OnEscape;
                 @Escape.canceled += instance.OnEscape;
+                @Punch.started += instance.OnPunch;
+                @Punch.performed += instance.OnPunch;
+                @Punch.canceled += instance.OnPunch;
             }
         }
     }
@@ -356,5 +385,6 @@ public partial class @Player : IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnEscape(InputAction.CallbackContext context);
+        void OnPunch(InputAction.CallbackContext context);
     }
 }
