@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        healthBar.SetHealth(_health);
         try {
             controller = GetComponent<CharacterController>();
             controller.minMoveDistance = 0.0f;
