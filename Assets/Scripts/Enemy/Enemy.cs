@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -85,7 +86,8 @@ public class Enemy : MonoBehaviour {
         if (collision.gameObject.tag == "Projectile") {
             health--;
             if (health <= 0) {
-                Destroy(gameObject);
+                anim.SetTrigger("Death");
+                Destroy(gameObject, 3.0f);
             }
             return;
         }
