@@ -11,7 +11,28 @@ public class Enemy : MonoBehaviour {
     NavMeshAgent agent;
     Animator anim;
 
-    [SerializeField] int health = 5;
+    [SerializeField] int maxHealth = 10;
+
+    private int _health = 100;
+    [SerializeField] public int health {
+        get { return _health; }
+        set {
+            if (value <= 0) {
+                anim.SetTrigger("Death");
+                Destroy(gameObject, 3.0f);
+            }
+
+
+            _health = value;
+            if (_health > maxHealth) {
+                _health = maxHealth;
+            }
+
+            //healthBar.SetHealth(_health);
+            Debug.Log("Enemy health is:" + health.ToString());
+        }
+    }
+
     Rigidbody rb;
 
     [SerializeField] enum EnemyState {
@@ -85,11 +106,6 @@ public class Enemy : MonoBehaviour {
     private void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.tag == "Projectile") {
             health--;
-            if (health <= 0) {
-                anim.SetTrigger("Death");
-                Destroy(gameObject, 3.0f);
-            }
-            return;
         }
     }
 

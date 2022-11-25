@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour {
     Vector2 move;
 
     private int _health = 100;
-    public int lives {
+    public int health {
         get { return _health; }
         set {
             if (value <= 0) {
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour {
             }
 
             healthBar.SetHealth(_health);
-            Debug.Log("Health is to:" + lives.ToString());
+            Debug.Log("Health is:" + health.ToString());
         }
     }
 
@@ -103,6 +103,13 @@ public class PlayerController : MonoBehaviour {
         //Debug.Log("Move vector is: " + context.action.ReadValue<Vector2>());
         if (context.action.WasPressedThisFrame()) {
             animator.SetTrigger("Punch");
+        }
+    }
+
+    public void Kick(InputAction.CallbackContext context) {
+        //Debug.Log("Move vector is: " + context.action.ReadValue<Vector2>());
+        if (context.action.WasPressedThisFrame()) {
+            animator.SetTrigger("Kick");
         }
     }
 }

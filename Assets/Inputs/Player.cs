@@ -80,6 +80,15 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Kick"",
+                    ""type"": ""Button"",
+                    ""id"": ""d210579a-2780-44df-9af9-ec5a259dabe8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -236,6 +245,17 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""action"": ""Punch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d106fad2-0001-4d1e-b825-6c9bd3c01685"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Kick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -250,6 +270,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         m_Actions_Look = m_Actions.FindAction("Look", throwIfNotFound: true);
         m_Actions_Escape = m_Actions.FindAction("Escape", throwIfNotFound: true);
         m_Actions_Punch = m_Actions.FindAction("Punch", throwIfNotFound: true);
+        m_Actions_Kick = m_Actions.FindAction("Kick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -315,6 +336,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
     private readonly InputAction m_Actions_Look;
     private readonly InputAction m_Actions_Escape;
     private readonly InputAction m_Actions_Punch;
+    private readonly InputAction m_Actions_Kick;
     public struct ActionsActions
     {
         private @Player m_Wrapper;
@@ -325,6 +347,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Actions_Look;
         public InputAction @Escape => m_Wrapper.m_Actions_Escape;
         public InputAction @Punch => m_Wrapper.m_Actions_Punch;
+        public InputAction @Kick => m_Wrapper.m_Actions_Kick;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -352,6 +375,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Punch.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPunch;
                 @Punch.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPunch;
                 @Punch.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPunch;
+                @Kick.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnKick;
+                @Kick.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnKick;
+                @Kick.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnKick;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -374,6 +400,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Punch.started += instance.OnPunch;
                 @Punch.performed += instance.OnPunch;
                 @Punch.canceled += instance.OnPunch;
+                @Kick.started += instance.OnKick;
+                @Kick.performed += instance.OnKick;
+                @Kick.canceled += instance.OnKick;
             }
         }
     }
@@ -386,5 +415,6 @@ public partial class @Player : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnEscape(InputAction.CallbackContext context);
         void OnPunch(InputAction.CallbackContext context);
+        void OnKick(InputAction.CallbackContext context);
     }
 }
