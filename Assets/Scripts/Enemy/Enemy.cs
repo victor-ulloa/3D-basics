@@ -17,11 +17,23 @@ public class Enemy : MonoBehaviour {
     [SerializeField] public int health {
         get { return _health; }
         set {
+            AnimatorStateInfo currentAnimation = anim.GetCurrentAnimatorStateInfo(0);
+            if (currentAnimation.IsName("Kicked") ||
+                currentAnimation.IsName("Punched")) {
+                return;
+            }
+            
             if (value <= 0) {
                 anim.SetTrigger("Death");
-                Destroy(gameObject, 3.0f);
+                agent.speed = 0;
+                Destroy(gameObject, 5.0f);
+            } else {
+                if (_health - value >= 2) {
+                    anim.SetTrigger("Kicked");
+                } else {
+                    anim.SetTrigger("Punched");
+                }
             }
-
 
             _health = value;
             if (_health > maxHealth) {

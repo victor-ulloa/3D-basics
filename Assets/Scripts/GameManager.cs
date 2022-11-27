@@ -11,6 +11,8 @@ public class GameManager : Singelton<GameManager> {
     MouseLook playerLook;
     MouseLook cameraLook;
 
+    [SerializeField] Canvas canvas;
+
     PlayerController controller;
     protected override void Awake() {
         base.Awake();
