@@ -1008,7 +1008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b5e706fe839e484ba6c7ed083236b29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 1
   currentState: 1
   target: {fileID: 0}
   path:
@@ -1016,6 +1016,7 @@ MonoBehaviour:
   - {fileID: 1030001382}
   pathIndex: 0
   distThreshold: 0
+  pickUpPrefab: {fileID: 1000010880751780, guid: c3c0707254334a64ca8198f7486e977d, type: 3}
 --- !u!195 &1315692060
 NavMeshAgent:
   m_ObjectHideFlags: 0

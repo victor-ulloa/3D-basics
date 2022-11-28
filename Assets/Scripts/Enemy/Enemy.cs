@@ -57,6 +57,8 @@ public class Enemy : MonoBehaviour {
     [SerializeField] int pathIndex;
     [SerializeField] float distThreshold;
 
+    [SerializeField] GameObject pickUpPrefab;
+
     // Start is called before the first frame update
     void Start() {
         agent = GetComponent<NavMeshAgent>();
@@ -119,6 +121,10 @@ public class Enemy : MonoBehaviour {
         if (collision.gameObject.tag == "Projectile") {
             health--;
         }
+    }
+
+    private void OnDestroy() {
+        Instantiate(pickUpPrefab, transform.position, pickUpPrefab.transform.rotation);
     }
 
 }
