@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour {
 
     CharacterController controller;
 
+    Coroutine speedChange;
+
     Vector3 curMoveInput;
     Vector2 move;
 
@@ -86,6 +88,23 @@ public class PlayerController : MonoBehaviour {
         if (controller.isGrounded) {
             curMoveInput = transform.TransformDirection(curMoveInput);
         }
+    }
+
+
+    public void StartSpeedChange() {
+        if (speedChange != null) {
+            StopCoroutine(speedChange);
+            speedChange = null;
+            moveSpeed /= 2;
+        }
+        speedChange = StartCoroutine(SpeedChange());
+    }
+
+    IEnumerator SpeedChange() {
+        moveSpeed *= 2;
+        yield return new WaitForSeconds(5.0f);
+        speedChange = null;
+        moveSpeed /= 2;
     }
 
     public void Fire(InputAction.CallbackContext context) {

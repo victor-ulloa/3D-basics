@@ -22,6 +22,7 @@ public class PickUp : MonoBehaviour {
 
             switch (pickupType) {
                 case PickupType.item1:
+                    currentPlayer.StartSpeedChange();
                     Debug.Log("Item 1 picked up");
                     break;
             }

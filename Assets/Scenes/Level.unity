@@ -1016,7 +1016,10 @@ MonoBehaviour:
   - {fileID: 1030001382}
   pathIndex: 0
   distThreshold: 0
-  pickUpPrefab: {fileID: 1000010880751780, guid: c3c0707254334a64ca8198f7486e977d, type: 3}
+  pickupPrefabs:
+  - {fileID: 1000010880751780, guid: c3c0707254334a64ca8198f7486e977d, type: 3}
+  - {fileID: 1000013765287000, guid: 38dea0631a962ad45b71e2759e4240d8, type: 3}
+  - {fileID: 1000011841440206, guid: 0ed203d298c050b49bfabe788790e1c2, type: 3}
 --- !u!195 &1315692060
 NavMeshAgent:
   m_ObjectHideFlags: 0

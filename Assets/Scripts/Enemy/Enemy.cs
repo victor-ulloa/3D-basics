@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -57,7 +56,7 @@ public class Enemy : MonoBehaviour {
     [SerializeField] int pathIndex;
     [SerializeField] float distThreshold;
 
-    [SerializeField] GameObject pickUpPrefab;
+    [SerializeField] GameObject[] pickupPrefabs;
 
     // Start is called before the first frame update
     void Start() {
@@ -124,7 +123,8 @@ public class Enemy : MonoBehaviour {
     }
 
     private void OnDestroy() {
-        Instantiate(pickUpPrefab, transform.position, pickUpPrefab.transform.rotation);
+        GameObject prefab = pickupPrefabs[Random.Range(0, pickupPrefabs.Length)];
+        Instantiate(prefab, transform.position, prefab.transform.rotation);
     }
 
 }
