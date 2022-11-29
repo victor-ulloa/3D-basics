@@ -1234,6 +1234,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 166984716632369913, guid: 745a71cb6c62cf242b995a53c263f744, type: 3}
+      propertyPath: m_Name
+      value: PlayerModel
+      objectReference: {fileID: 0}
     - target: {fileID: 1049433713437450672, guid: 745a71cb6c62cf242b995a53c263f744, type: 3}
       propertyPath: healthBar
       value: 
@@ -1281,10 +1285,6 @@ PrefabInstance:
     - target: {fileID: 1049433713437450674, guid: 745a71cb6c62cf242b995a53c263f744, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1049433713437450676, guid: 745a71cb6c62cf242b995a53c263f744, type: 3}
-      propertyPath: m_SlopeLimit
-      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1049433713437450677, guid: 745a71cb6c62cf242b995a53c263f744, type: 3}
       propertyPath: m_Name
