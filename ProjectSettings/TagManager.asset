@@ -7,6 +7,8 @@ TagManager:
   - Projectile
   - PatrolNode
   - Enemy
+  - Water
+  - Lava
   layers:
   - Default
   - TransparentFX

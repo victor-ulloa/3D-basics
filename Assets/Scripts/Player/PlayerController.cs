@@ -131,4 +131,23 @@ public class PlayerController : MonoBehaviour {
             animator.SetTrigger("Kick");
         }
     }
+
+    private void OnCollisionEnter(Collision collision) {
+        Debug.Log("testt");
+        if (collision.gameObject.tag == "Lava") {
+            Debug.Log("Lava");
+        }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.transform.tag == "Lava") {
+            Debug.Log("Lava");
+        }
+    }
+    private void OnCollisionStay(Collision collision) {
+        Debug.Log("test3");
+        if (collision.gameObject.tag == "Lava") {
+            Debug.Log("Lava");
+        }
+    }
 }
