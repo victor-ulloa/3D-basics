@@ -10,6 +10,7 @@ TagManager:
   - Water
   - Lava
   - SlowArea
+  - DamageArea
   layers:
   - Default
   - TransparentFX

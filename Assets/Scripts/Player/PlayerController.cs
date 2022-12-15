@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] float jumpSpeed = 10.0f;
 
     [SerializeField] HealthBar healthBar;
-    [SerializeField] int maxHealth = 100;
+    [SerializeField] float maxHealth = 100;
 
     CharacterController controller;
 
@@ -28,8 +28,8 @@ public class PlayerController : MonoBehaviour {
     Vector3 curMoveInput;
     Vector2 move;
 
-    private int _health = 100;
-    public int health {
+    private float _health = 100;
+    public float health {
         get { return _health; }
         set {
             if (value <= 0) {
@@ -148,6 +148,12 @@ public class PlayerController : MonoBehaviour {
     private void OnTriggerExit(Collider other) {
         if (other.gameObject.transform.tag == "SlowArea") {
             moveSpeedMultiplier = 1;
+        }
+    }
+
+    private void OnTriggerStay(Collider other) {
+        if (other.gameObject.transform.tag == "DamageArea") {
+            health -= 0.5f;
         }
     }
 }
