@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] float projectileForce = 10.0f;
 
     [SerializeField] float moveSpeed = 0;
+    [SerializeField] float moveSpeedMultiplier = 1;
     [SerializeField] float gravity = 9.81f;
     [SerializeField] float jumpSpeed = 10.0f;
 
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour {
 
     Coroutine speedChange;
 
+    Vector3 moveVel = new Vector3(0, 0, 0);
     Vector3 curMoveInput;
     Vector2 move;
 
@@ -71,6 +73,7 @@ public class PlayerController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        CalculateMovement();
         curMoveInput.y -= gravity * Time.deltaTime;
         controller.Move(curMoveInput * Time.deltaTime);
 
@@ -83,8 +86,12 @@ public class PlayerController : MonoBehaviour {
         move = context.action.ReadValue<Vector2>();
         move.Normalize();
 
-        Vector3 moveVel = new Vector3(move.x, 0, move.y);
-        curMoveInput = moveVel * moveSpeed;
+        moveVel = new Vector3(move.x, 0, move.y);
+        
+    }
+
+    void CalculateMovement() {
+        curMoveInput = moveVel * moveSpeed * moveSpeedMultiplier;
         if (controller.isGrounded) {
             curMoveInput = transform.TransformDirection(curMoveInput);
         }
@@ -95,16 +102,16 @@ public class PlayerController : MonoBehaviour {
         if (speedChange != null) {
             StopCoroutine(speedChange);
             speedChange = null;
-            moveSpeed /= 2;
+            moveSpeedMultiplier = 1;
         }
         speedChange = StartCoroutine(SpeedChange());
     }
 
     IEnumerator SpeedChange() {
-        moveSpeed *= 2;
+        moveSpeedMultiplier = 2;
         yield return new WaitForSeconds(5.0f);
         speedChange = null;
-        moveSpeed /= 2;
+        moveSpeedMultiplier = 1;
     }
 
     public void Fire(InputAction.CallbackContext context) {
@@ -132,22 +139,15 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter(Collision collision) {
-        Debug.Log("testt");
-        if (collision.gameObject.tag == "Lava") {
-            Debug.Log("Lava");
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.transform.tag == "SlowArea") {
+            moveSpeedMultiplier = 0.5f;
         }
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.transform.tag == "Lava") {
-            Debug.Log("Lava");
-        }
-    }
-    private void OnCollisionStay(Collision collision) {
-        Debug.Log("test3");
-        if (collision.gameObject.tag == "Lava") {
-            Debug.Log("Lava");
+    private void OnTriggerExit(Collider other) {
+        if (other.gameObject.transform.tag == "SlowArea") {
+            moveSpeedMultiplier = 1;
         }
     }
 }

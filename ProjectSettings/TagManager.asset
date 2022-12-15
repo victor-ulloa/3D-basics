@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Water
   - Lava
+  - SlowArea
   layers:
   - Default
   - TransparentFX
