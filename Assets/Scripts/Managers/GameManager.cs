@@ -9,7 +9,6 @@ public class GameManager : Singelton<GameManager> {
     public Player playerInput;
 
     MouseLook playerLook;
-    MouseLook cameraLook;
 
     [SerializeField] Canvas canvas;
 
@@ -52,20 +51,16 @@ public class GameManager : Singelton<GameManager> {
 
     void AddPlayerInput() {
         controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        cameraLook = Camera.main.GetComponent<MouseLook>();
         playerLook = GameObject.FindGameObjectWithTag("Player").GetComponent<MouseLook>();
 
-
-        if (controller == null || cameraLook == null || playerLook == null) {
+        if (controller == null || playerLook == null) {
             return;
         }
-
 
         playerInput.Actions.Move.performed += ctx => controller.MovePlayer(ctx);
         playerInput.Actions.Move.canceled += ctx => controller.MovePlayer(ctx);
         playerInput.Actions.Fire.performed += ctx => controller.Fire(ctx);
 
-        playerInput.Actions.Look.performed += ctx => cameraLook.Look(ctx);
         playerInput.Actions.Look.performed += ctx => playerLook.Look(ctx);
     }
 

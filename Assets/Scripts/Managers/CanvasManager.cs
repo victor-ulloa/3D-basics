@@ -5,8 +5,7 @@ using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class CanvasManager : MonoBehaviour
-{
+public class CanvasManager : MonoBehaviour {
     [Header("Mixer")]
     [SerializeField] AudioMixer audioMixer;
 
@@ -14,7 +13,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject settingsMenu;
     [SerializeField] GameObject pauseMenu;
-    [SerializeField] GameObject creditsMenu;
+    [SerializeField] GameObject gameOver;
 
     [Header("Button")]
     [SerializeField] Button startButton;
@@ -24,8 +23,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] Text scoreText;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         // Buttons
 
         if (startButton) {
@@ -39,9 +37,8 @@ public class CanvasManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+
     }
 
     void StartGame() {
