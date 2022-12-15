@@ -13,7 +13,8 @@ public class Enemy : MonoBehaviour {
     [SerializeField] int maxHealth = 10;
 
     private int _health = 100;
-    [SerializeField] public int health {
+    [SerializeField]
+    public int health {
         get { return _health; }
         set {
             AnimatorStateInfo currentAnimation = anim.GetCurrentAnimatorStateInfo(0);
@@ -21,7 +22,7 @@ public class Enemy : MonoBehaviour {
                 currentAnimation.IsName("Punched")) {
                 return;
             }
-            
+
             if (value <= 0) {
                 anim.SetTrigger("Death");
                 agent.speed = 0;
@@ -46,14 +47,15 @@ public class Enemy : MonoBehaviour {
 
     Rigidbody rb;
 
-    [SerializeField] enum EnemyState {
-        Chase, Patrol
+    [SerializeField]
+    public enum EnemyState {
+        Chase, Patrol, Idle
     }
 
-    [SerializeField] EnemyState currentState;
+    [SerializeField] public EnemyState currentState;
     [SerializeField] public GameObject target;
     [SerializeField] GameObject[] path;
-    [SerializeField] int pathIndex;
+    [SerializeField] int pathIndex = 0;
     [SerializeField] float distThreshold;
 
     [SerializeField] GameObject[] pickupPrefabs;
@@ -69,17 +71,6 @@ public class Enemy : MonoBehaviour {
             Debug.Log("No animation component in child for the gameobject " + gameObject.name);
         }
 
-        if (path.Length <= 0) {
-            path = GameObject.FindGameObjectsWithTag("PatrolNode");
-        }
-
-        if (currentState == EnemyState.Chase) {
-            target = GameObject.FindGameObjectWithTag("Player");
-
-            if (target)
-                agent.SetDestination(target.transform.position);
-        }
-
         if (distThreshold <= 0) {
             distThreshold = 0.5f;
         }
@@ -89,21 +80,33 @@ public class Enemy : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        if (currentState == EnemyState.Patrol) {
-            if (target)
-                Debug.DrawLine(transform.position, target.transform.position, Color.red);
-
-            if (agent.remainingDistance < distThreshold) {
-                pathIndex++;
-                pathIndex %= path.Length;
-                target = path[pathIndex];
-            }
-        }
-
-        if (currentState == EnemyState.Chase) {
-            if (target.CompareTag("PatrolNode"))
+        switch (currentState) {
+            case EnemyState.Chase:
                 target = GameObject.FindGameObjectWithTag("Player");
+                break;
+            case EnemyState.Patrol:
+                if (path.Length == 0) {
+                    currentState = EnemyState.Idle;
+                    break;
+                }
+                if (target) {
+                    Debug.DrawLine(transform.position, target.transform.position, Color.red);
+                    if (agent.remainingDistance < distThreshold) {
+                        pathIndex++;
+                        pathIndex %= path.Length;
+                        target = path[pathIndex];
+                    }
+                } else {
+                    target = path[0];
+                }
+                break;
+            case EnemyState.Idle:
+                if (target)
+                    agent.ResetPath();
+                target = null;
+                break;
         }
+
 
         if (target)
             agent.SetDestination(target.transform.position);

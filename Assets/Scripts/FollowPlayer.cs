@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-[RequireComponent(typeof(CheckForPlayer))]
+[RequireComponent(typeof(CheckForPlayer), typeof(Enemy))]
 
 public class FollowPlayer : MonoBehaviour {
-    
 
+    Enemy enemy;    
     CheckForPlayer sight;
 
     [SerializeField] float moveSpeed = 0;
@@ -18,6 +18,7 @@ public class FollowPlayer : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         try {
+            enemy = GetComponent<Enemy>();
             sight = GetComponent<CheckForPlayer>();
 
             if (moveSpeed <= 0.0f) {
@@ -33,13 +34,14 @@ public class FollowPlayer : MonoBehaviour {
     void Update() {
         if (sight.isLookingAtPlayer) {
             playerPosition = sight.playerTransform.position;
-
             float angle = Vector3.Angle(sight.playerTransform.forward, transform.position - sight.playerTransform.position);
-
             if (angle > 50 && (Mathf.Abs(playerPosition.x - transform.position.x) > 3 || Mathf.Abs(playerPosition.z - transform.position.z) > 3)) {
-                transform.position = Vector3.MoveTowards(transform.position, playerPosition, moveSpeed * Time.deltaTime);
+                enemy.currentState = Enemy.EnemyState.Chase;
+            } else {
+                enemy.currentState = Enemy.EnemyState.Idle;
             }
         } else {
+            enemy.currentState = Enemy.EnemyState.Patrol;
             playerPosition.x = 0;
             playerPosition.z = 0;
         }
