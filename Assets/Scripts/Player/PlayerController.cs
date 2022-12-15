@@ -126,17 +126,19 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Punch(InputAction.CallbackContext context) {
-        //Debug.Log("Move vector is: " + context.action.ReadValue<Vector2>());
         if (context.action.WasPressedThisFrame()) {
             animator.SetTrigger("Punch");
         }
     }
 
     public void Kick(InputAction.CallbackContext context) {
-        //Debug.Log("Move vector is: " + context.action.ReadValue<Vector2>());
         if (context.action.WasPressedThisFrame()) {
             animator.SetTrigger("Kick");
         }
+    }
+
+    public void Jump(InputAction.CallbackContext context) {
+        
     }
 
     private void OnTriggerEnter(Collider other) {
