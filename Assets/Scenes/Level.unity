@@ -615,51 +615,15 @@ MonoBehaviour:
     m_ActionId: 72c0f9f7-31fe-4d69-912f-34a6fbbd68eb
     m_ActionName: Actions/Jump[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2050785135}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: MovePlayer
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: c12dd0a3-a55a-4933-afd6-38af6a6ca39f
     m_ActionName: Actions/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2050785135}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: Fire
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 930905e7-5c49-44f3-a647-ce3ee22f9a95
     m_ActionName: Actions/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2050785134}
-        m_TargetAssemblyTypeName: MouseLook, Assembly-CSharp
-        m_MethodName: Look
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: c71a2cac-4199-437f-93e6-38f57b92844a
     m_ActionName: Actions/Look[/Mouse/delta]
   - m_PersistentCalls:
@@ -679,35 +643,11 @@ MonoBehaviour:
     m_ActionId: 381f59e6-12ca-46d3-a1b0-447608546271
     m_ActionName: Actions/Escape[/Keyboard/escape]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2050785135}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: Punch
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 0b2f0d51-a642-4c25-ac06-e685529e1e0d
     m_ActionName: Actions/Punch[/Mouse/rightButton]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2050785135}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: Kick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: d210579a-2780-44df-9af9-ec5a259dabe8
     m_ActionName: Actions/Kick[/Keyboard/c]
   m_NeverAutoSwitchControlSchemes: 0
@@ -1662,28 +1602,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2050785134 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1049433713437450673, guid: 745a71cb6c62cf242b995a53c263f744, type: 3}
-  m_PrefabInstance: {fileID: 1049433711461687007}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8872648e4fb631f43b3b6a72ebaac4df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2050785135 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1049433713437450672, guid: 745a71cb6c62cf242b995a53c263f744, type: 3}
-  m_PrefabInstance: {fileID: 1049433711461687007}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be375996c0b63e94a87f22d0ab3b61ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2076146174
 GameObject:
   m_ObjectHideFlags: 0
