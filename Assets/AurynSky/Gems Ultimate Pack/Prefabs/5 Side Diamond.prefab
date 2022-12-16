@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5e44fcdaa6c6f549afd5fcacee5fdee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupType: 0
+  pickupType: 1
   PickUpSound: {fileID: 0}
 --- !u!64 &1538488890102324586
 MeshCollider:

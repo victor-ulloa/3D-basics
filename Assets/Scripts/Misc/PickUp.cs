@@ -5,7 +5,9 @@ using UnityEngine;
 public class PickUp : MonoBehaviour {
 
     public enum PickupType {
-        item1 = 0
+        SpeedUp = 0,
+        SuperJump = 1,
+        Win = 2
     }
 
     [SerializeReference] PickupType pickupType;
@@ -21,10 +23,18 @@ public class PickUp : MonoBehaviour {
             //AudioSourceManager sfxManager = collision.gameObject.GetComponent<AudioSourceManager>();
 
             switch (pickupType) {
-                case PickupType.item1:
+                case PickupType.SpeedUp:
                     currentPlayer.StartSpeedChange();
-                    Debug.Log("Item 1 picked up");
+                    Debug.Log("SpeedUp picked up");
                     break;
+                case PickupType.SuperJump:
+                    Debug.Log("SuperJump picked up");
+                    break;
+                case PickupType.Win:
+                    GameManager.Instance.EndGame();
+                    Debug.Log("Win picked up");
+                    break;
+
             }
 
             //sfxManager.Play(PickUpSound);
