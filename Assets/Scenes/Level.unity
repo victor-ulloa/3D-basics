@@ -1931,7 +1931,7 @@ PrefabInstance:
       objectReference: {fileID: 389042832}
     - target: {fileID: 1049433713437450672, guid: 745a71cb6c62cf242b995a53c263f744, type: 3}
       propertyPath: moveSpeed
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1049433713437450674, guid: 745a71cb6c62cf242b995a53c263f744, type: 3}
       propertyPath: m_RootOrder
@@ -2001,6 +2001,10 @@ PrefabInstance:
     - target: {fileID: 6152700679806522105, guid: 3cc3767b8f967564b95ef07ae514afdc, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6152700679806522106, guid: 3cc3767b8f967564b95ef07ae514afdc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6152700679806522107, guid: 3cc3767b8f967564b95ef07ae514afdc, type: 3}
       propertyPath: m_RootOrder

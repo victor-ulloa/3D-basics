@@ -433,7 +433,7 @@ GameObject:
   - component: {fileID: 1241376702}
   m_Layer: 0
   m_Name: SlimePBR
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -560,6 +560,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  isIdle: 1
+  isGhost: 1
 --- !u!114 &930406075
 MonoBehaviour:
   m_ObjectHideFlags: 0

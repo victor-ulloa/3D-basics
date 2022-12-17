@@ -185,4 +185,11 @@ public class PlayerController : MonoBehaviour {
             health -= 0.5f;
         }
     }
+
+    private void OnCollisionEnter(Collision collision) {
+        Debug.Log(collision.gameObject.tag);
+        if (collision.gameObject.tag == "EnemyProjectile" || collision.gameObject.tag == "Enemy") {
+            health -= 10f;
+        }
+    }
 }
