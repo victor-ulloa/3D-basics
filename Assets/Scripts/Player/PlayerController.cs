@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour {
     CharacterController controller;
 
     Coroutine speedChange;
+    Coroutine jumpChange;
 
     bool _jumpPressed = false;
     Vector3 moveVel = new Vector3(0, 0, 0);
@@ -94,7 +95,6 @@ public class PlayerController : MonoBehaviour {
             curMoveInput.y = 0;
         }
         if (_jumpPressed && controller.isGrounded) {
-            Debug.Log("test3");
             curMoveInput.y = Mathf.Sqrt(jumpSpeed * gravity);
             _jumpPressed = false;
         }
@@ -107,6 +107,22 @@ public class PlayerController : MonoBehaviour {
             moveSpeedMultiplier = 1;
         }
         speedChange = StartCoroutine(SpeedChange());
+    }
+
+    IEnumerator JumpChange() {
+        jumpSpeed *= 2;
+        yield return new WaitForSeconds(5.0f);
+        jumpChange = null;
+        jumpSpeed /= 2;
+    }
+
+    public void StartJumpChange() {
+        if (jumpChange != null) {
+            StopCoroutine(jumpChange);
+            speedChange = null;
+            jumpSpeed /= 2;
+        }
+        jumpChange = StartCoroutine(JumpChange());
     }
 
     IEnumerator SpeedChange() {

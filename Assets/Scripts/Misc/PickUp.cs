@@ -28,6 +28,7 @@ public class PickUp : MonoBehaviour {
                     Debug.Log("SpeedUp picked up");
                     break;
                 case PickupType.SuperJump:
+                    currentPlayer.StartJumpChange();
                     Debug.Log("SuperJump picked up");
                     break;
                 case PickupType.Win:
