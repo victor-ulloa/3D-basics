@@ -12,6 +12,8 @@ public class FollowPlayer : MonoBehaviour {
     CheckForPlayer sight;
 
     [SerializeField] float moveSpeed = 0;
+    [SerializeField] bool isIdle;
+    [SerializeField] bool isGhost;
 
     Vector3 playerPosition;
 
@@ -37,11 +39,15 @@ public class FollowPlayer : MonoBehaviour {
             float angle = Vector3.Angle(sight.playerTransform.forward, transform.position - sight.playerTransform.position);
             if (angle > 50 && (Mathf.Abs(playerPosition.x - transform.position.x) > 3 || Mathf.Abs(playerPosition.z - transform.position.z) > 3)) {
                 enemy.currentState = Enemy.EnemyState.Chase;
+            } else if (isGhost) {
+                enemy.currentState = Enemy.EnemyState.Idle ;
             } else {
-                enemy.currentState = Enemy.EnemyState.Idle;
+                enemy.currentState = isIdle ? Enemy.EnemyState.Idle : Enemy.EnemyState.Patrol;
             }
+
         } else {
-            enemy.currentState = Enemy.EnemyState.Patrol;
+            enemy.currentState = isIdle ? Enemy.EnemyState.Idle : Enemy.EnemyState.Patrol;
+            
             playerPosition.x = 0;
             playerPosition.z = 0;
         }
