@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour {
 
             
             _health = value;
-            if (_health > maxHealth) {
+            if (_health >= maxHealth) {
                 _health = maxHealth;
             }
 
@@ -183,6 +183,10 @@ public class PlayerController : MonoBehaviour {
     private void OnTriggerStay(Collider other) {
         if (other.gameObject.transform.tag == "DamageArea") {
             health -= 0.5f;
+        }
+
+        if (other.gameObject.transform.tag == "HealingArea") {
+            health += 1;
         }
     }
 
