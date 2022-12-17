@@ -11,6 +11,7 @@ TagManager:
   - Lava
   - SlowArea
   - DamageArea
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX
