@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour {
 
     Coroutine speedChange;
 
+    bool _jumpPressed = false;
     Vector3 moveVel = new Vector3(0, 0, 0);
     Vector3 curMoveInput;
     Vector2 move;
@@ -74,6 +75,7 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         CalculateMovement();
+        MovementJump();
         curMoveInput.y -= gravity * Time.deltaTime;
         controller.Move(curMoveInput * Time.deltaTime);
 
@@ -81,22 +83,22 @@ public class PlayerController : MonoBehaviour {
         animator.SetFloat("Right", move.x);
     }
 
-    public void MovePlayer(InputAction.CallbackContext context) {
-        //Debug.Log("Move vector is: " + context.action.ReadValue<Vector2>());
-        move = context.action.ReadValue<Vector2>();
-        move.Normalize();
-
-        moveVel = new Vector3(move.x, 0, move.y);
-        
+    void CalculateMovement() {
+        curMoveInput.x = moveSpeed * moveSpeedMultiplier * moveVel.x;
+        curMoveInput.z = moveSpeed * moveSpeedMultiplier * moveVel.z;
+        curMoveInput = transform.TransformDirection(curMoveInput);
     }
 
-    void CalculateMovement() {
-        curMoveInput = moveVel * moveSpeed * moveSpeedMultiplier;
+    void MovementJump() {
         if (controller.isGrounded) {
-            curMoveInput = transform.TransformDirection(curMoveInput);
+            curMoveInput.y = 0;
+        }
+        if (_jumpPressed && controller.isGrounded) {
+            Debug.Log("test3");
+            curMoveInput.y = Mathf.Sqrt(jumpSpeed * gravity);
+            _jumpPressed = false;
         }
     }
-
 
     public void StartSpeedChange() {
         if (speedChange != null) {
@@ -114,12 +116,19 @@ public class PlayerController : MonoBehaviour {
         moveSpeedMultiplier = 1;
     }
 
+    public void MovePlayer(InputAction.CallbackContext context) {
+        //Debug.Log("Move vector is: " + context.action.ReadValue<Vector2>());
+        move = context.action.ReadValue<Vector2>();
+        move.Normalize();
+        moveVel = new Vector3(move.x, 0, move.y);
+
+    }
+
     public void Fire(InputAction.CallbackContext context) {
         if (context.action.WasPressedThisFrame()) {
             if (projectilePrefab && projectileSpawn) {
                 Rigidbody temp = Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation);
                 temp.AddForce(projectileSpawn.forward * projectileForce, ForceMode.Impulse);
-
                 Destroy(temp.gameObject, 2.0f);
             }
         }
@@ -138,7 +147,9 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Jump(InputAction.CallbackContext context) {
-        
+        if (controller.velocity.y == 0) {
+            _jumpPressed = true;
+        }
     }
 
     private void OnTriggerEnter(Collider other) {

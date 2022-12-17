@@ -60,6 +60,7 @@ public class GameManager : Singelton<GameManager> {
 
         playerInput.Actions.Move.performed += ctx => controller.MovePlayer(ctx);
         playerInput.Actions.Move.canceled += ctx => controller.MovePlayer(ctx);
+        playerInput.Actions.Jump.performed += ctx => controller.Jump(ctx);
         playerInput.Actions.Fire.performed += ctx => controller.Fire(ctx);
         playerInput.Actions.Punch.performed += ctx => controller.Punch(ctx);
         playerInput.Actions.Kick.performed += ctx => controller.Kick(ctx);
