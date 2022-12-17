@@ -20,7 +20,7 @@ public class PickUp : MonoBehaviour {
 
         if (collision.tag == "Player") {
 
-            //AudioSourceManager sfxManager = collision.gameObject.GetComponent<AudioSourceManager>();
+            AudioSourceManager sfxManager = collision.gameObject.GetComponent<AudioSourceManager>();
 
             switch (pickupType) {
                 case PickupType.SpeedUp:
@@ -38,7 +38,7 @@ public class PickUp : MonoBehaviour {
 
             }
 
-            //sfxManager.Play(PickUpSound);
+            sfxManager.Play(PickUpSound);
             Destroy(gameObject);
         }
     }

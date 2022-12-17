@@ -3,7 +3,15 @@ guid: 92be3dcbf69519149adb294b328df21b
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - audioMixer: {fileID: 24100000, guid: 47a32ed29cb61e44882bdad2631f4317, type: 2}
+  - mainMenu: {instanceID: 0}
+  - settingsMenu: {instanceID: 0}
+  - pauseMenu: {instanceID: 0}
+  - gameOver: {instanceID: 0}
+  - startButton: {instanceID: 0}
+  - quitButton: {instanceID: 0}
+  - scoreText: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
